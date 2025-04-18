@@ -1,6 +1,12 @@
 // sanCristobal.js
 
 document.addEventListener("DOMContentLoaded", function() {
+    // Verificar si el usuario está autenticado
+    if (!localStorage.getItem('isLoggedIn')) {
+        // Si no está autenticado, redirigimos al login
+        window.location.href = 'login.html';
+    }
+
     // Recupera las novedades almacenadas en localStorage
     const novedades = JSON.parse(localStorage.getItem("novedades")) || [];
 
@@ -24,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <p>${novedad.novedad}</p>
                 <h4>Imágenes:</h4>
                 <ul>
-                    ${novedad.imagenes.map(img => `<li><img src="${URL.createObjectURL(img)}" alt="Imagen" width="100" /></li>`).join('')}
+                    ${novedad.imagenes ? novedad.imagenes.map(img => `<li><img src="${URL.createObjectURL(img)}" alt="Imagen" width="100" /></li>`).join('') : '<li>No hay imágenes</li>'}
                 </ul>
             `;
             novedadElement.innerHTML = novedadHTML;

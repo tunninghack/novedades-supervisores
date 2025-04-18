@@ -1,6 +1,12 @@
 // usaquen.js
 
 document.addEventListener("DOMContentLoaded", function() {
+    // Verificar si el usuario está autenticado
+    if (!localStorage.getItem('isLoggedIn')) {
+        // Si no está autenticado, redirigimos al login
+        window.location.href = 'login.html';
+    }
+
     // Recupera las novedades almacenadas en localStorage
     const novedades = JSON.parse(localStorage.getItem("novedades")) || [];
 

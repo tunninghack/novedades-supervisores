@@ -12,12 +12,21 @@
         <p>No hay novedades por el momento.</p>
     </div>
 
+    <!-- Botón de cerrar sesión -->
+    <button id="logoutBtn">Cerrar sesión</button>
+
     <script>
         // Verificar si el usuario está autenticado
         if (!localStorage.getItem('isLoggedIn')) {
             // Si no está autenticado, redirigir al login
             window.location.href = 'login.html';
         }
+
+        // Funcionalidad del botón de cierre de sesión
+        document.getElementById("logoutBtn").addEventListener("click", function() {
+            localStorage.removeItem('isLoggedIn');  // Borrar el estado de autenticación
+            window.location.href = 'login.html';  // Redirigir al login
+        });
     </script>
 
     <script src="js/sanCristobal.js"></script>
