@@ -8,13 +8,18 @@
 </head>
 <body>
     <h1>Panel de San Cristóbal</h1>
-    
-    <!-- Contenedor donde aparecerán las novedades -->
     <div id="novedades-sancs">
         <p>No hay novedades por el momento.</p>
     </div>
 
-    <!-- Carga el archivo JavaScript que contiene la lógica de San Cristóbal -->
+    <script>
+        // Verificar si el usuario está autenticado
+        if (!localStorage.getItem('isLoggedIn')) {
+            // Si no está autenticado, redirigir al login
+            window.location.href = 'login.html';
+        }
+    </script>
+
     <script src="js/sanCristobal.js"></script>
 </body>
 </html>
