@@ -26,12 +26,23 @@
         <button type="submit">Enviar</button>
     </form>
 
+    <!-- Botón de cerrar sesión -->
+    <button id="logout-btn">Cerrar sesión</button>
+
     <script>
         // Verificar si el usuario está autenticado en la página
         if (!localStorage.getItem('isLoggedIn')) {
             // Si no está autenticado, redirigimos al login
             window.location.href = 'login.html';
         }
+
+        // Función para cerrar sesión
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            // Borrar el estado de la sesión
+            localStorage.removeItem('isLoggedIn');
+            // Redirigir al login
+            window.location.href = 'login.html';
+        });
     </script>
 
     <script src="js/app.js"></script>
