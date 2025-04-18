@@ -1,33 +1,21 @@
-document.getElementById('formulario').addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevenir el envío del formulario
+document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-    const concesion = document.getElementById('concesion').value;  // Obtener la concesión seleccionada
-    const novedad = document.getElementById('novedad').value;  // Obtener la descripción de la novedad
-    const imagenes = document.getElementById('imagenes').files;  // Obtener las imágenes seleccionadas
+    const concesion = document.getElementById("concesion").value;
+    const novedad = document.getElementById("novedad").value;
+    const imagenes = document.getElementById("imagenes").files;
 
-    // Convertir las imágenes en un array de nombres de archivos
-    const imagenesArray = Array.from(imagenes).map(file => file.name);
-
-    // Crear el objeto de novedad
+    // Crea un objeto para guardar la novedad
     const novedadObj = {
         concesion: concesion,
         novedad: novedad,
-        imagenes: imagenesArray
+        imagenes: Array.from(imagenes) // Convierte las imágenes a un array
     };
 
-    // Obtener las novedades guardadas en localStorage (o crear un array vacío si no existen)
-    let novedades = JSON.parse(localStorage.getItem(concesion)) || [];
-
-    // Añadir la nueva novedad al array
+    // Guarda la novedad en el almacenamiento local
+    let novedades = JSON.parse(localStorage.getItem("novedades")) || [];
     novedades.push(novedadObj);
+    localStorage.setItem("novedades", JSON.stringify(novedades));
 
-    // Guardar las novedades de la concesión en localStorage
-    localStorage.setItem(concesion, JSON.stringify(novedades));
-
-    // Redirigir a la página correspondiente (según la concesión seleccionada)
-    if (concesion === 'sanCristobal') {
-        window.location.href = 'san-cristobal.html';  // Redirige a San Cristóbal
-    } else {
-        window.location.href = 'usaquen.html';  // Redirige a Usaquén
-    }
+    alert("Novedad enviada correctamente");
 });
