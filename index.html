@@ -5,46 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto de Novedades</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Bienvenido al sistema de novedades</h1>
+    <header>
+        <div class="logo-container">
+            <img src="imagenes/Logo empresa.jfif" alt="Logo de la Empresa" class="logo">
+        </div>
+        <h1 class="title">SUPERVISIÓN CENTRO DE CONTROL ZONAL</h1>
+        <p class="subtitle">Este desarrollo tiene el objetivo de permitir al equipo de supervisión tener un control desde el enlace hasta los supervisores de ambas concesiones para llevar una trazabilidad de las oportunidades de mejora.</p>
+    </header>
 
-    <!-- Contenido del formulario -->
-    <form id="formulario">
-        <label for="concesion">Concesión:</label>
-        <select id="concesion">
-            <option value="sanCristobal">San Cristóbal</option>
-            <option value="usaquen">Usaquén</option>
-        </select>
-        
-        <label for="novedad">Novedad:</label>
-        <textarea id="novedad"></textarea>
-        
-        <label for="imagenes">Imágenes:</label>
-        <input type="file" id="imagenes" multiple>
-        
-        <button type="submit">Enviar</button>
-    </form>
+    <main>
+        <section class="form-container">
+            <form id="formulario">
+                <div class="form-group">
+                    <label for="concesion">Concesión:</label>
+                    <select id="concesion">
+                        <option value="sanCristobal">San Cristóbal</option>
+                        <option value="usaquen">Usaquén</option>
+                    </select>
+                </div>
 
-    <!-- Botón de cerrar sesión -->
-    <button id="logout-btn">Cerrar sesión</button>
+                <div class="form-group">
+                    <label for="novedad">Novedad:</label>
+                    <textarea id="novedad" placeholder="Describa la novedad..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagenes">Imágenes:</label>
+                    <input type="file" id="imagenes" multiple>
+                </div>
+
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
+        </section>
+        
+        <button id="logout-btn" class="logout-btn">Cerrar sesión</button>
+    </main>
 
     <script>
-        // Verificar si el usuario está autenticado en la página
         if (!localStorage.getItem('isLoggedIn')) {
-            // Si no está autenticado, redirigimos al login
             window.location.href = 'login.html';
         }
 
-        // Función para cerrar sesión
         document.getElementById('logout-btn').addEventListener('click', function() {
-            // Borrar el estado de la sesión
             localStorage.removeItem('isLoggedIn');
-            // Redirigir al login
             window.location.href = 'login.html';
         });
     </script>
-
-    <script src="js/app.js"></script>
 </body>
 </html>

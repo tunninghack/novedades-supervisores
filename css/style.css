@@ -1,16 +1,110 @@
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
 }
-form {
+
+/* Encabezado común para todos los paneles */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: #2a7f62; /* Usaquén color */
+    padding: 20px;
+    color: white;
+}
+
+h1.title {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+p.subtitle {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Sección de formulario */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Estilo del botón */
+button.submit-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button.submit-btn:hover {
+    background-color: #45a049;
+}
+
+/* Botón de cerrar sesión */
+button.logout-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
     margin-top: 20px;
 }
-label {
-    display: block;
-    margin: 10px 0 5px;
+
+button.logout-btn:hover {
+    background-color: #d32f2f;
 }
-textarea, select, input[type="file"] {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ddd;
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    h1.title {
+        font-size: 28px;
+    }
+
+    p.subtitle {
+        font-size: 16px;
+    }
+
+    .form-container {
+        padding: 10px;
+    }
+
+    button.submit-btn,
+    button.logout-btn {
+        width: 100%;
+    }
 }

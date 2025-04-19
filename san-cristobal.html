@@ -3,26 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de San Cristóbal</title>
+    <title>Panel para el Supervisor Encargado de la Concesión San Cristóbal</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Panel de San Cristóbal</h1>
-    <div id="novedades-sancs">
-        <p>No hay novedades por el momento.</p>
-    </div>
+    <!-- Header -->
+    <header>
+        <h1 class="title">Panel para el Supervisor Encargado de la Concesión San Cristóbal</h1>
+        <p class="subtitle">Este panel te ayudará a gestionar las novedades y realizar un seguimiento adecuado de la operación.</p>
+    </header>
+
+    <!-- Sección de alertas -->
+    <section class="alert-section">
+        <div class="alert-icon">
+            <!-- Aquí se incluye el icono de alerta -->
+            <img src="C:\Users\juan.buitrago\novedades-supervisores\imagenes\alerta.jpg" alt="Icono de alerta">
+        </div>
+        <div class="alert-message">
+            <h2>Novedad</h2>
+            <div id="alerta-content">
+                <!-- Contenedor para mostrar el contador de novedades -->
+                <p><strong>Por revisar: <span id="contador-novedades">0</span></strong></p>
+                <p id="novedad-descripcion" style="display:none;">No hay novedades por el momento.</p>
+                <!-- Aquí se añadirán las novedades dinámicamente -->
+            </div>
+        </div>
+    </section>
 
     <!-- Botón de cerrar sesión -->
-    <button id="logoutBtn">Cerrar sesión</button>
+    <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
 
     <script>
-        // Verificar si el usuario está autenticado
-        if (!localStorage.getItem('isLoggedIn')) {
-            // Si no está autenticado, redirigir al login
-            window.location.href = 'login.html';
+        // Simulación de novedades
+        const novedades = [
+            { id: 1, descripcion: 'Nueva novedad presentada en el control 1', leida: false },
+            // Puedes añadir más novedades aquí si es necesario
+        ];
+
+        // Función para actualizar el contador y la descripción
+        function actualizarContadorYDescripcion() {
+            const contador = document.getElementById('contador-novedades');
+            const descripcionElemento = document.getElementById('novedad-descripcion');
+
+            // Filtrar las novedades no leídas
+            const novedadesPendientes = novedades.filter(novedad => !novedad.leida);
+            const cantidadPendientes = novedadesPendientes.length;
+
+            if (cantidadPendientes > 0) {
+                contador.textContent = cantidadPendientes; // Actualiza el contador
+                descripcionElemento.style.display = 'none'; // Oculta el mensaje de "No hay novedades"
+                
+                // Mostrar las novedades pendientes
+                novedadesPendientes.forEach(novedad => {
+                    const novedadDiv = document.createElement('div');
+                    novedadDiv.innerHTML = `<p><strong>Novedad:</strong> ${novedad.descripcion}</p>`;
+                    document.getElementById('alerta-content').appendChild(novedadDiv);
+                });
+            } else {
+                contador.textContent = '0'; // No hay novedades
+                descripcionElemento.style.display = 'block'; // Muestra el mensaje "No hay novedades"
+            }
         }
 
-        // Funcionalidad del botón de cierre de sesión
+        // Llamar la función para actualizar la interfaz
+        actualizarContadorYDescripcion();
+
+        // Funcionalidad de cierre de sesión
         document.getElementById("logoutBtn").addEventListener("click", function() {
             localStorage.removeItem('isLoggedIn');  // Borrar el estado de autenticación
             window.location.href = 'login.html';  // Redirigir al login

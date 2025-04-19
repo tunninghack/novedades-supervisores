@@ -7,13 +7,23 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Panel de Usaquén</h1>
+    <header>
+        <h1 class="title">Panel de Usaquén</h1>
+        <p class="subtitle">Bienvenido al panel de Usaquén. Aquí puedes consultar las novedades y otros datos relevantes.</p>
+    </header>
+    
     <div id="novedades-usaquen">
-        <p>No hay novedades por el momento.</p>
+        <!-- Esta es la sección donde se mostrarán las novedades de Usaquén -->
+        <div id="contador-novedades">
+            <p id="counter-usaquen">Contador de Novedades: 0</p>
+        </div>
+        <div id="novedad-descripcion">
+            <p>No hay novedades por el momento.</p>
+        </div>
     </div>
 
     <!-- Botón de cerrar sesión -->
-    <button id="logoutBtn">Cerrar sesión</button>
+    <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
 
     <script>
         // Verificar si el usuario está autenticado
@@ -27,6 +37,26 @@
             localStorage.removeItem('isLoggedIn');  // Borrar el estado de autenticación
             window.location.href = 'login.html';  // Redirigir al login
         });
+
+        // Función para mostrar las novedades específicas de Usaquén
+        function actualizarNovedadesUsaquén() {
+            // Este es el array con la novedad real
+            const novedades = ["Nueva novedad revisar que pasó con el técnico Lorena"];
+
+            const contador = document.getElementById("counter-usaquen");
+            const descripcion = document.getElementById("novedad-descripcion");
+
+            if (novedades.length > 0) {
+                contador.textContent = `Contador de Novedades: ${novedades.length}`;
+                descripcion.innerHTML = novedades.map(n => `<p>${n}</p>`).join('');
+            } else {
+                contador.textContent = `Contador de Novedades: 0`;
+                descripcion.innerHTML = `<p>No hay novedades por el momento.</p>`;
+            }
+        }
+
+        // Llamada para actualizar las novedades de Usaquén
+        actualizarNovedadesUsaquén();
     </script>
 
     <script src="js/usaquen.js"></script>
