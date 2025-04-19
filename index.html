@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="logo-container">
-            <img src="imagenes/Logo empresa.jfif" alt="Logo de la Empresa" class="logo">
+            <img src="imagenes/Logo empresa.jfif" alt="Logo de la Empresa" class="logo"> <!-- Ruta relativa -->
         </div>
         <h1 class="title">SUPERVISIÓN CENTRO DE CONTROL ZONAL</h1>
         <p class="subtitle">Este desarrollo tiene el objetivo de permitir al equipo de supervisión tener un control desde el enlace hasta los supervisores de ambas concesiones para llevar una trazabilidad de las oportunidades de mejora.</p>
@@ -45,15 +45,18 @@
     </main>
 
     <script>
+        // Verificar si el usuario ha iniciado sesión
         if (!localStorage.getItem('isLoggedIn')) {
-            window.location.href = 'login.html';
+            window.location.href = 'login.html';  // Redirigir al login si no está logueado
         }
 
+        // Función de cerrar sesión
         document.getElementById('logout-btn').addEventListener('click', function() {
-            localStorage.removeItem('isLoggedIn');
-            window.location.href = 'login.html';
+            localStorage.removeItem('isLoggedIn');  // Eliminar la sesión del localStorage
+            window.location.href = 'login.html';  // Redirigir al login
         });
 
+        // Funcionalidad del formulario
         document.getElementById("formulario").addEventListener("submit", function(event) {
             event.preventDefault();
             

@@ -16,7 +16,7 @@
         /* Fondo de la página */
         body {
             font-family: Arial, sans-serif;
-            background-image: url('C:\Users\juan.buitrago\novedades-supervisores\imagenes\zonalconsorcio.jpg'); /* Aquí pon la ruta de tu imagen de fondo */
+            background-image: url('imagenes/zonalconsorcio.jpg'); /* Ruta relativa */
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -107,7 +107,7 @@
     <div class="login-container">
         <!-- Logo de la empresa -->
         <div class="logo">
-            <img src="C:\Users\juan.buitrago\novedades-supervisores\imagenes\Logo empresa.jfif" alt="Logo Empresa"> <!-- Aquí pon la ruta de tu logo -->
+            <img src="imagenes/Logo empresa.jfif" alt="Logo Empresa"> <!-- Ruta relativa -->
         </div>
         
         <!-- Título y descripción -->
@@ -126,6 +126,22 @@
         </form>
     </div>
 
-    <script src="js/login.js"></script>
+    <script>
+        // Simulación de inicio de sesión
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Aquí puedes agregar lógica para verificar las credenciales
+            if (username === 'usuario' && password === 'contraseña') {  // Cambia esto a tus credenciales reales
+                localStorage.setItem('isLoggedIn', 'true');  // Guardamos la sesión en el localStorage
+                window.location.href = 'index.html';  // Redirigir al panel principal
+            } else {
+                alert('Credenciales incorrectas');
+            }
+        });
+    </script>
 </body>
 </html>
