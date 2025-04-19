@@ -21,7 +21,7 @@
             <form id="formulario">
                 <div class="form-group">
                     <label for="concesion">Concesión:</label>
-                    <select id="concesion">
+                    <select id="concesion" required>
                         <option value="sanCristobal">San Cristóbal</option>
                         <option value="usaquen">Usaquén</option>
                     </select>
@@ -63,6 +63,12 @@
             const concesion = document.getElementById("concesion").value;
             const novedad = document.getElementById("novedad").value;
             const imagenes = document.getElementById("imagenes").files;
+
+            // Validar que la novedad no esté vacía
+            if (!novedad.trim()) {
+                alert("Por favor, ingrese una descripción para la novedad.");
+                return;
+            }
 
             // Guarda las novedades en localStorage por concesión
             let novedades = JSON.parse(localStorage.getItem(concesion)) || [];

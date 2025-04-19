@@ -134,8 +134,15 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Aquí puedes agregar lógica para verificar las credenciales
-            if (username === 'usuario' && password === 'contraseña') {  // Cambia esto a tus credenciales reales
+            // Definir usuarios y contraseñas
+            const users = {
+                'supervisor_sanCristobal': '1234',
+                'supervisor_usaquen': '5678',
+                'supervisor_enlace': 'admin123'
+            };
+
+            // Verificar las credenciales
+            if (users[username] && users[username] === password) {
                 localStorage.setItem('isLoggedIn', 'true');  // Guardamos la sesión en el localStorage
                 window.location.href = 'index.html';  // Redirigir al panel principal
             } else {
