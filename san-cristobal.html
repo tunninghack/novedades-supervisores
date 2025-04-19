@@ -3,63 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel para el Supervisor Encargado de la Concesión San Cristóbal</title>
+    <title>Panel de San Cristóbal</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <h1 class="title">Panel para el Supervisor Encargado de la Concesión San Cristóbal</h1>
-        <p class="subtitle">Este panel te ayudará a gestionar las novedades y realizar un seguimiento adecuado de la operación.</p>
+        <h1>Panel de San Cristóbal</h1>
     </header>
 
-    <!-- Sección de alertas (sin el icono de alerta) -->
-    <section class="alert-section">
-        <div class="alert-message">
-            <h2>Novedades</h2>
-            <div id="alerta-content">
-                <p><strong>Por revisar: <span id="contador-novedades">0</span></strong></p>
-                <p id="novedad-descripcion" style="display:none;">No hay novedades por el momento.</p>
-            </div>
+    <div class="container">
+        <div id="novedades-sancs">
+            <p>No hay novedades por el momento.</p>
         </div>
-    </section>
 
-    <!-- Botón de cerrar sesión -->
-    <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
+        <button id="logoutBtn">Cerrar sesión</button>
+    </div>
 
     <script>
+        // Verificar si el usuario está autenticado
         if (!localStorage.getItem('isLoggedIn')) {
             window.location.href = 'login.html';
         }
 
+        // Funcionalidad del botón de cierre de sesión
         document.getElementById("logoutBtn").addEventListener("click", function() {
             localStorage.removeItem('isLoggedIn');
             window.location.href = 'login.html';
         });
-
-        // Función para actualizar las novedades
-        window.onload = function() {
-            const concesion = "sanCristobal"; // Panel San Cristóbal
-            const novedades = JSON.parse(localStorage.getItem(concesion)) || [];
-
-            const contador = document.getElementById("contador-novedades");
-            const descripcionElemento = document.getElementById("novedad-descripcion");
-
-            if (novedades.length > 0) {
-                contador.textContent = novedades.length; // Actualiza el contador
-                descripcionElemento.style.display = 'none'; // Oculta el mensaje de "No hay novedades"
-                
-                // Mostrar las novedades
-                novedades.forEach(novedad => {
-                    const novedadDiv = document.createElement('div');
-                    novedadDiv.innerHTML = `<p><strong>Novedad:</strong> ${novedad.descripcion} - <strong>Imágenes adjuntas:</strong> ${novedad.imagenes}</p>`;
-                    document.getElementById('alerta-content').appendChild(novedadDiv);
-                });
-            } else {
-                contador.textContent = '0'; // No hay novedades
-                descripcionElemento.style.display = 'block'; // Muestra el mensaje "No hay novedades"
-            }
-        };
     </script>
+
+    <script src="js/sanCristobal.js"></script>
 </body>
 </html>

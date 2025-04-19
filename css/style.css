@@ -1,110 +1,119 @@
 /* Estilos generales */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
     margin: 0;
     padding: 0;
 }
 
-/* Encabezado común para todos los paneles */
-header {
-    text-align: center;
-    margin-bottom: 30px;
-    background-color: #2a7f62; /* Usaquén color */
-    padding: 20px;
-    color: white;
+h1, h3, h4 {
+    color: #2a4d68; /* Azul medio oscuro */
 }
 
-h1.title {
-    font-size: 36px;
-    font-weight: 600;
-}
-
-p.subtitle {
-    font-size: 18px;
-    margin-top: 10px;
-}
-
-/* Sección de formulario */
-.form-container {
-    max-width: 600px;
+/* Contenedor principal */
+.container {
+    width: 80%;
     margin: 0 auto;
     padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    font-weight: 600;
-    margin-bottom: 5px;
-    display: block;
-}
-
-textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-/* Estilo del botón */
-button.submit-btn {
-    background-color: #4caf50;
+/* Encabezado */
+header {
+    background-color: #4d6c3f; /* Verde oliva */
     color: white;
-    padding: 10px 20px;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Estilos de los formularios */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #2a4d68;
+}
+
+form input[type="text"],
+form input[type="password"],
+form select,
+form textarea,
+form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #4d6c3f; /* Verde oliva */
+    color: white;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
 
-button.submit-btn:hover {
-    background-color: #45a049;
+form button:hover {
+    background-color: #3b5a2f;
 }
 
 /* Botón de cerrar sesión */
-button.logout-btn {
-    background-color: #f44336;
+button#logout-btn {
+    background-color: #2a4d68; /* Azul medio oscuro */
     color: white;
     padding: 10px 20px;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
     margin-top: 20px;
 }
 
-button.logout-btn:hover {
-    background-color: #d32f2f;
+button#logout-btn:hover {
+    background-color: #1d3a53;
 }
 
-/* Media query para pantallas pequeñas */
-@media (max-width: 768px) {
-    h1.title {
-        font-size: 28px;
-    }
+/* Contenedores de novedades */
+#novedades-sancs, #novedades-usaquen {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
 
-    p.subtitle {
-        font-size: 16px;
-    }
+.novedad {
+    background-color: #e8f0e5;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
 
-    .form-container {
-        padding: 10px;
-    }
+.novedad h3 {
+    color: #2a4d68;
+}
 
-    button.submit-btn,
-    button.logout-btn {
-        width: 100%;
-    }
+/* Estilos adicionales */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+img {
+    max-width: 100px;
+    border-radius: 5px;
 }

@@ -8,47 +8,43 @@
 </head>
 <body>
     <header>
-        <h1 class="title">Panel de Usaquén</h1>
-        <p class="subtitle">Bienvenido al panel de Usaquén. Aquí puedes consultar las novedades y otros datos relevantes.</p>
+        <h1>Panel de Usaquén</h1>
     </header>
-    
-    <div id="novedades-usaquen">
-        <div id="contador-novedades">
-            <p id="counter-usaquen">Contador de Novedades: 0</p>
+
+    <div class="container">
+        <!-- Sección de Novedades -->
+        <div id="novedades-usaquen">
+            <h3>Novedades de Usaquén</h3>
+            <div class="novedad">
+                <h4>1. Nueva Novedad</h4>
+                <p>Detalles de la novedad...</p>
+            </div>
+
+            <!-- Aquí puedes añadir más novedades dinámicamente -->
+            <div class="novedad">
+                <h4>2. Otra Novedad</h4>
+                <p>Detalles de la novedad...</p>
+            </div>
         </div>
-        <div id="novedad-descripcion">
-            <p>No hay novedades por el momento.</p>
-        </div>
+
+        <!-- Botón para Cerrar Sesión -->
+        <button id="logoutBtn">Cerrar sesión</button>
     </div>
 
-    <!-- Botón de cerrar sesión -->
-    <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
-
     <script>
+        // Verificar si el usuario está autenticado en la página
         if (!localStorage.getItem('isLoggedIn')) {
+            // Si no está autenticado, redirigimos al login
             window.location.href = 'login.html';
         }
 
+        // Función para cerrar sesión
         document.getElementById("logoutBtn").addEventListener("click", function() {
             localStorage.removeItem('isLoggedIn');
             window.location.href = 'login.html';
         });
-
-        window.onload = function() {
-            const concesion = "usaquen"; // Panel Usaquén
-            const novedades = JSON.parse(localStorage.getItem(concesion)) || [];
-
-            const contador = document.getElementById("counter-usaquen");
-            const descripcion = document.getElementById("novedad-descripcion");
-
-            if (novedades.length > 0) {
-                contador.textContent = `Contador de Novedades: ${novedades.length}`;
-                descripcion.innerHTML = novedades.map(n => `<p>${n.descripcion} - Imágenes: ${n.imagenes}</p>`).join('');
-            } else {
-                contador.textContent = `Contador de Novedades: 0`;
-                descripcion.innerHTML = `<p>No hay novedades por el momento.</p>`;
-            }
-        };
     </script>
+
+    <script src="js/usaquen.js"></script>
 </body>
 </html>
