@@ -16,16 +16,13 @@
     <!-- Sección de alertas -->
     <section class="alert-section">
         <div class="alert-icon">
-            <!-- Aquí se incluye el icono de alerta -->
-            <img src="C:\Users\juan.buitrago\novedades-supervisores\imagenes\alerta.jpg" alt="Icono de alerta">
+            <img src="imagenes/alerta.jpg" alt="Icono de alerta">
         </div>
         <div class="alert-message">
-            <h2>Novedad</h2>
+            <h2>Novedades</h2>
             <div id="alerta-content">
-                <!-- Contenedor para mostrar el contador de novedades -->
                 <p><strong>Por revisar: <span id="contador-novedades">0</span></strong></p>
                 <p id="novedad-descripcion" style="display:none;">No hay novedades por el momento.</p>
-                <!-- Aquí se añadirán las novedades dinámicamente -->
             </div>
         </div>
     </section>
@@ -34,47 +31,38 @@
     <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
 
     <script>
-        // Simulación de novedades
-        const novedades = [
-            { id: 1, descripcion: 'Nueva novedad presentada en el control 1', leida: false },
-            // Puedes añadir más novedades aquí si es necesario
-        ];
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'login.html';
+        }
 
-        // Función para actualizar el contador y la descripción
-        function actualizarContadorYDescripcion() {
-            const contador = document.getElementById('contador-novedades');
-            const descripcionElemento = document.getElementById('novedad-descripcion');
+        document.getElementById("logoutBtn").addEventListener("click", function() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        });
 
-            // Filtrar las novedades no leídas
-            const novedadesPendientes = novedades.filter(novedad => !novedad.leida);
-            const cantidadPendientes = novedadesPendientes.length;
+        // Función para actualizar las novedades
+        window.onload = function() {
+            const concesion = "sanCristobal"; // Panel San Cristóbal
+            const novedades = JSON.parse(localStorage.getItem(concesion)) || [];
 
-            if (cantidadPendientes > 0) {
-                contador.textContent = cantidadPendientes; // Actualiza el contador
+            const contador = document.getElementById("contador-novedades");
+            const descripcionElemento = document.getElementById("novedad-descripcion");
+
+            if (novedades.length > 0) {
+                contador.textContent = novedades.length; // Actualiza el contador
                 descripcionElemento.style.display = 'none'; // Oculta el mensaje de "No hay novedades"
                 
-                // Mostrar las novedades pendientes
-                novedadesPendientes.forEach(novedad => {
+                // Mostrar las novedades
+                novedades.forEach(novedad => {
                     const novedadDiv = document.createElement('div');
-                    novedadDiv.innerHTML = `<p><strong>Novedad:</strong> ${novedad.descripcion}</p>`;
+                    novedadDiv.innerHTML = `<p><strong>Novedad:</strong> ${novedad.descripcion} - <strong>Imágenes adjuntas:</strong> ${novedad.imagenes}</p>`;
                     document.getElementById('alerta-content').appendChild(novedadDiv);
                 });
             } else {
                 contador.textContent = '0'; // No hay novedades
                 descripcionElemento.style.display = 'block'; // Muestra el mensaje "No hay novedades"
             }
-        }
-
-        // Llamar la función para actualizar la interfaz
-        actualizarContadorYDescripcion();
-
-        // Funcionalidad de cierre de sesión
-        document.getElementById("logoutBtn").addEventListener("click", function() {
-            localStorage.removeItem('isLoggedIn');  // Borrar el estado de autenticación
-            window.location.href = 'login.html';  // Redirigir al login
-        });
+        };
     </script>
-
-    <script src="js/sanCristobal.js"></script>
 </body>
 </html>

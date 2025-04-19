@@ -53,6 +53,23 @@
             localStorage.removeItem('isLoggedIn');
             window.location.href = 'login.html';
         });
+
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const concesion = document.getElementById("concesion").value;
+            const novedad = document.getElementById("novedad").value;
+            const imagenes = document.getElementById("imagenes").files;
+
+            // Guarda las novedades en localStorage por concesión
+            let novedades = JSON.parse(localStorage.getItem(concesion)) || [];
+            novedades.push({ descripcion: novedad, imagenes: imagenes.length });
+            
+            localStorage.setItem(concesion, JSON.stringify(novedades));
+
+            // Redirige al panel correspondiente
+            window.location.href = `${concesion}.html`;
+        });
     </script>
 </body>
 </html>

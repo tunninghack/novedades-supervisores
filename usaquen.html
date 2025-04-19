@@ -13,7 +13,6 @@
     </header>
     
     <div id="novedades-usaquen">
-        <!-- Esta es la sección donde se mostrarán las novedades de Usaquén -->
         <div id="contador-novedades">
             <p id="counter-usaquen">Contador de Novedades: 0</p>
         </div>
@@ -26,39 +25,30 @@
     <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
 
     <script>
-        // Verificar si el usuario está autenticado
         if (!localStorage.getItem('isLoggedIn')) {
-            // Si no está autenticado, redirigir al login
             window.location.href = 'login.html';
         }
 
-        // Funcionalidad del botón de cierre de sesión
         document.getElementById("logoutBtn").addEventListener("click", function() {
-            localStorage.removeItem('isLoggedIn');  // Borrar el estado de autenticación
-            window.location.href = 'login.html';  // Redirigir al login
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
         });
 
-        // Función para mostrar las novedades específicas de Usaquén
-        function actualizarNovedadesUsaquén() {
-            // Este es el array con la novedad real
-            const novedades = ["Nueva novedad revisar que pasó con el técnico Lorena"];
+        window.onload = function() {
+            const concesion = "usaquen"; // Panel Usaquén
+            const novedades = JSON.parse(localStorage.getItem(concesion)) || [];
 
             const contador = document.getElementById("counter-usaquen");
             const descripcion = document.getElementById("novedad-descripcion");
 
             if (novedades.length > 0) {
                 contador.textContent = `Contador de Novedades: ${novedades.length}`;
-                descripcion.innerHTML = novedades.map(n => `<p>${n}</p>`).join('');
+                descripcion.innerHTML = novedades.map(n => `<p>${n.descripcion} - Imágenes: ${n.imagenes}</p>`).join('');
             } else {
                 contador.textContent = `Contador de Novedades: 0`;
                 descripcion.innerHTML = `<p>No hay novedades por el momento.</p>`;
             }
-        }
-
-        // Llamada para actualizar las novedades de Usaquén
-        actualizarNovedadesUsaquén();
+        };
     </script>
-
-    <script src="js/usaquen.js"></script>
 </body>
 </html>
