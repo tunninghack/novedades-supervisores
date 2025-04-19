@@ -3,81 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto de Novedades</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Panel Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .panel-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e53935;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="imagenes/Logo empresa.jfif" alt="Logo de la Empresa" class="logo"> <!-- Ruta relativa -->
-        </div>
-        <h1 class="title">SUPERVISIÓN CENTRO DE CONTROL ZONAL</h1>
-        <p class="subtitle">Este desarrollo tiene el objetivo de permitir al equipo de supervisión tener un control desde el enlace hasta los supervisores de ambas concesiones para llevar una trazabilidad de las oportunidades de mejora.</p>
-    </header>
-
-    <main>
-        <section class="form-container">
-            <form id="formulario">
-                <div class="form-group">
-                    <label for="concesion">Concesión:</label>
-                    <select id="concesion" required>
-                        <option value="sanCristobal">San Cristóbal</option>
-                        <option value="usaquen">Usaquén</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="novedad">Novedad:</label>
-                    <textarea id="novedad" placeholder="Describa la novedad..." required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="imagenes">Imágenes:</label>
-                    <input type="file" id="imagenes" multiple>
-                </div>
-
-                <button type="submit" class="submit-btn">Enviar</button>
-            </form>
-        </section>
-        
-        <button id="logout-btn" class="logout-btn">Cerrar sesión</button>
-    </main>
+    <div class="panel-container">
+        <h2>Bienvenido al Panel Principal</h2>
+        <button id="logout-btn">Cerrar sesión</button>
+    </div>
 
     <script>
-        // Verificar si el usuario ha iniciado sesión
+        // Verificar si el usuario está logueado
         if (!localStorage.getItem('isLoggedIn')) {
             window.location.href = 'login.html';  // Redirigir al login si no está logueado
         }
 
-        // Función de cerrar sesión
+        // Cerrar sesión
         document.getElementById('logout-btn').addEventListener('click', function() {
             localStorage.removeItem('isLoggedIn');  // Eliminar la sesión del localStorage
             window.location.href = 'login.html';  // Redirigir al login
-        });
-
-        // Funcionalidad del formulario
-        document.getElementById("formulario").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            const concesion = document.getElementById("concesion").value;
-            const novedad = document.getElementById("novedad").value;
-            const imagenes = document.getElementById("imagenes").files;
-
-            // Validar que la novedad no esté vacía
-            if (!novedad.trim()) {
-                alert("Por favor, ingrese una descripción para la novedad.");
-                return;
-            }
-
-            // Guarda las novedades en localStorage por concesión
-            let novedades = JSON.parse(localStorage.getItem(concesion)) || [];
-            novedades.push({ descripcion: novedad, imagenes: imagenes.length });
-            
-            localStorage.setItem(concesion, JSON.stringify(novedades));
-
-            // Mostrar mensaje de confirmación sin redirigir
-            alert("Notificación enviada al supervisor.");
         });
     </script>
 </body>
